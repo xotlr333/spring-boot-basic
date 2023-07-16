@@ -18,7 +18,8 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public Product insertProduct(Product product) {
-        return null;
+        Product saveProduct = productRepository.save(product);
+        return saveProduct;
     }
 
     @Override
