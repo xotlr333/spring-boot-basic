@@ -6,6 +6,9 @@ import com.example.springbootbasic.data.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 @Component
 public class ProductDAOImpl implements ProductDAO {
 
@@ -30,7 +33,21 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public Product updateProductName(Long number, String name) throws Exception {
-        return null;
+        Optional<Product> selectedProduct = productRepository.findById(number);
+
+        Product updateProduct;
+        if (selectedProduct.isPresent()){
+            Product product = selectedProduct.get();
+
+            product.setName(name);
+            product.setUpdateAt(LocalDateTime.now());
+
+            updateProduct = productRepository.save(product);
+        } else {
+            throw new Exception();
+        }
+
+        return updateProduct;
     }
 
     @Override
