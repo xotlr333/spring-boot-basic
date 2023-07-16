@@ -52,6 +52,15 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void deleteProduct(Long number) throws Exception {
+        Optional<Product> selectedProduct = productRepository.findById(number);
+
+        if (selectedProduct.isPresent()){
+            Product product = selectedProduct.get();
+
+            productRepository.delete(product);
+        } else {
+            throw new Exception();
+        }
 
     }
 }
