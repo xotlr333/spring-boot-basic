@@ -1,6 +1,6 @@
 package com.example.springbootbasic.controller;
 
-import com.example.springbootbasic.dto.MemberDto;
+import com.example.springbootbasic.data.dto.MemberDto;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;

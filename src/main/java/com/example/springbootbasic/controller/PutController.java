@@ -1,6 +1,6 @@
 package com.example.springbootbasic.controller;
 
-import com.example.springbootbasic.dto.MemberDto;
+import com.example.springbootbasic.data.dto.MemberDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
