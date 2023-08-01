@@ -8,6 +8,8 @@ import com.example.springbootbasic.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -33,7 +35,22 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponseDto saveProduct(ProductDto productDto) {
-        return null;
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setPrice(productDto.getPrice());
+        product.setStock(productDto.getStock());
+        product.setCreatedAt(LocalDateTime.now());
+        product.setUpdateAt(LocalDateTime.now());
+
+        Product savedProduct = productDAO.insertProduct(product);
+
+        ProductResponseDto productResponseDto = new ProductResponseDto();
+        productResponseDto.setNumber(savedProduct.getNumber());
+        productResponseDto.setName(savedProduct.getName());
+        productResponseDto.setPrice(savedProduct.getPrice());
+        productResponseDto.setStock(savedProduct.getStock());
+
+        return productResponseDto;
     }
 
     @Override
