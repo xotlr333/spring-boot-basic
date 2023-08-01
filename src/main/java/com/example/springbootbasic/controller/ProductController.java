@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.OneToMany;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -43,6 +45,13 @@ public class ProductController {
                 );
 
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDto);
+    }
+    
+    @DeleteMapping()
+    public ResponseEntity<String> deleteProduct(Long number) throws Exception {
+        productService.deleteProduct(number);
+
+        return ResponseEntity.status(HttpStatus.OK).body("정상적으로 삭제되었습니다.");
     }
 
 }
