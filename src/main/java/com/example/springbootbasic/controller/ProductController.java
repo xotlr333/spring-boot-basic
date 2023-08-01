@@ -1,5 +1,6 @@
 package com.example.springbootbasic.controller;
 
+import com.example.springbootbasic.data.dto.ChangeProductNameDto;
 import com.example.springbootbasic.data.dto.ProductDto;
 import com.example.springbootbasic.data.dto.ProductResponseDto;
 import com.example.springbootbasic.service.ProductService;
@@ -32,4 +33,16 @@ public class ProductController {
 
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDto);
     }
+
+    @PutMapping()
+    public ResponseEntity<ProductResponseDto> changeProductName(
+            @RequestBody ChangeProductNameDto changeProductNameDto) throws Exception {
+        ProductResponseDto productResponseDto = productService.changeProductName(
+                changeProductNameDto.getNumber(),
+                changeProductNameDto.getName()
+                );
+
+        return ResponseEntity.status(HttpStatus.OK).body(productResponseDto);
+    }
+
 }
